@@ -31,7 +31,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuario> save( @RequestBody UsuarioRequestDTO dto) {
         if (dto.nome().isEmpty()) {
-            return ResponseEntity.status(400).build(); // Usando código 400 para Bad Request
+            return ResponseEntity.status(400).build();
         }
 
         Usuario usuario = new Usuario();
@@ -53,7 +53,7 @@ public class UsuarioController {
     @PutMapping("/{idUsuario}")
     public ResponseEntity<Usuario> update(@PathVariable Integer idUsuario, @RequestBody UsuarioRequestDTO dto) {
         if (dto.nome().isEmpty()) {
-            return ResponseEntity.status(400).build(); // Usando código 400 para Bad Request
+            return ResponseEntity.status(400).build();
         }
 
         Usuario usuario = this.repository.findById(idUsuario)
