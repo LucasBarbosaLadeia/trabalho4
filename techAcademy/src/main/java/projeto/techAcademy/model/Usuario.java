@@ -1,6 +1,10 @@
 package projeto.techAcademy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -11,7 +15,11 @@ public class Usuario {
    @Column(name = "id_usuario")
     private Integer idUsuario;
 
-   @Column
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("pedido")
+    private List<Pedido> pedidos;
+
+    @Column
     private String nome;
 
     @Column
@@ -39,5 +47,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }
